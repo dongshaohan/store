@@ -1,2 +1,2 @@
 # store
-use localStorage and sessionStorage
+A better way to use localStorage.
