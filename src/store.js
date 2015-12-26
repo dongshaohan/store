@@ -25,10 +25,9 @@
     var _ = {
         version: "0.1",
         stringify: function (s) {
-            return d === undefined || typeof d === "function" ? d+'' : JSON.stringify(d);
+            return s === undefined || typeof s === "function" ? s+'' : JSON.stringify(s);
         },
         parse: function (s) {
-            // if it doesn't parse, return as is
             try { 
                 return JSON.parse(s); 
             } catch(e) { 
@@ -55,6 +54,10 @@
         },
         storeAPI: {
             _area: localStorage,
+            keys: function () {
+                return this.each(function(k, list) { list.push(k); }, []);
+            },
+            size: function () { return this.keys().length; },
             each: function (fn, and) {
                 for ( var i = 0, m = _.length(this._area); i < m; i++ ) {
                     var key = _.key(this._area, i);
