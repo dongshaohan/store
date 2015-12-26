@@ -23,7 +23,6 @@
 })(this, function () {
 
     var _ = {
-        version: "0.1",
         stringify: function (s) {
             return s === undefined || typeof s === "function" ? s+'' : JSON.stringify(s);
         },
@@ -53,7 +52,14 @@
             area.clear(); 
         },
         storeAPI: {
+            version: "0.1",
             _area: localStorage,
+            has: function (key) {
+                if ( this._area.has ) {
+                    return this._area.has( key );
+                }
+                return !!(key in this._area);
+            },
             keys: function () {
                 return this.each(function(k, list) { list.push(k); }, []);
             },
